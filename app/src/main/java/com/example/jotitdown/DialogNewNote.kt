@@ -32,6 +32,14 @@ class DialogNewNote : DialogFragment () {
 
         val btnOK = dialogView.findViewById<Button>(R.id.btnOK)
 
+        builder.setView(dialogView).setMessage("Add a new note!")
+
+        //handle the cancel button
+
+        btnCancel.setOnClickListener {
+            dismiss()
+
+        }
 
     }
 }
