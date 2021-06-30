@@ -35,11 +35,34 @@ class DialogNewNote : DialogFragment () {
         builder.setView(dialogView).setMessage("Add a new note!")
 
         //handle the cancel button
-
         btnCancel.setOnClickListener {
             dismiss()
-
         }
+
+        btnOK.setOnClickListener {
+            //create a new note
+            val newNote = Note()
+
+            //set its properties to match the user's entries on the form
+            newNote.title = editTitle.text.toString()
+
+            newNote.description = editDescription.text.toString()
+
+            newNote.idea = checkBoxIdea.isChecked
+            newNote.todo = checkBoxTodo.isChecked
+            newNote.important = checkBoxImportant.isChecked
+
+            //get a reference to MainActivity
+            val callingActivity = activity as MainActivity?
+
+            //pass the newNote back to MainActivity
+            callingActivity!!.createNewNote(newNote)
+
+            //quit the dialog
+            dismiss()
+        }
+
+        return builder.create()
 
     }
 }
